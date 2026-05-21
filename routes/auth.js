@@ -128,7 +128,7 @@ router.put('/profile', protect, upload.single('avatar'), async (req, res) => {
 
       if (req.file) {
         // If there was an old avatar, delete it from storage
-        if (user.avatar && user.avatar.startsWith('/uploads/')) {
+        if (user.avatar && user.avatar.startsWith('')) {
           const oldAvatarPath = path.join(__dirname, '../', user.avatar);
           if (fs.existsSync(oldAvatarPath)) {
             try {
@@ -138,7 +138,7 @@ router.put('/profile', protect, upload.single('avatar'), async (req, res) => {
             }
           }
         }
-        user.avatar = `/uploads/${req.file.path}`;
+        user.avatar = `${req.file.path}`;
       }
 
       const updatedUser = await user.save();

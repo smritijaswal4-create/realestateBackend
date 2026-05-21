@@ -103,7 +103,7 @@ router.post(
 
       // Construct image URL (path from client perspective)
       // Serving static files in express, so we'll serve "/uploads"
-      const imagePath = `/uploads/${req.file.path}`;
+      const imagePath = `${req.file.path}`;
 
       // Convert amenities back to array if it was sent as string/JSON string
       let amenitiesArr = [];
@@ -187,10 +187,10 @@ router.put(
 
       // Handle file upload if new image is provided
       if (req.file) {
-        updatedData.image = `/uploads/${req.file.path}`;
+        updatedData.image = `${req.file.path}`;
 
         // Attempt to delete old image if it's local
-        if (property.image && property.image.startsWith('/uploads/')) {
+        if (property.image && property.image.startsWith('')) {
           const oldImagePath = path.join(
             __dirname,
             '../',
@@ -249,7 +249,7 @@ router.delete('/:id', protect, authorize('agent'), async (req, res) => {
     }
 
     // Delete associated image file from uploads folder
-    if (property.image && property.image.startsWith('/uploads/')) {
+    if (property.image && property.image.startsWith('')) {
       const imagePath = path.join(__dirname, '../', property.image);
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath);
