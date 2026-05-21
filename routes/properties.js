@@ -103,7 +103,7 @@ router.post(
 
       // Construct image URL (path from client perspective)
       // Serving static files in express, so we'll serve "/uploads"
-      const imagePath = `/uploads/${req.file.filename}`;
+      const imagePath = `/uploads/${req.file.path}`;
 
       // Convert amenities back to array if it was sent as string/JSON string
       let amenitiesArr = [];
@@ -187,7 +187,7 @@ router.put(
 
       // Handle file upload if new image is provided
       if (req.file) {
-        updatedData.image = `/uploads/${req.file.filename}`;
+        updatedData.image = `/uploads/${req.file.path}`;
 
         // Attempt to delete old image if it's local
         if (property.image && property.image.startsWith('/uploads/')) {

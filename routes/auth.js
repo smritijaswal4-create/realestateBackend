@@ -138,7 +138,7 @@ router.put('/profile', protect, upload.single('avatar'), async (req, res) => {
             }
           }
         }
-        user.avatar = `/uploads/${req.file.filename}`;
+        user.avatar = `/uploads/${req.file.path}`;
       }
 
       const updatedUser = await user.save();
